@@ -27,7 +27,7 @@ def display_word(word):
     for i in range(len(word)):
         value += "_ "
     print(value)
-    
+
 
 def display_guessed_letters(letters):
     """
@@ -39,11 +39,12 @@ def display_guessed_letters(letters):
     print(f"Guessed letters: {value}")
 
 
-def get_and_validate_guess():
+def get_and_validate_guess(excluded_letters):
     """
     Gets the guess from the user and validates it
     so it only returns if the user has entered
-    one valid letter
+    one valid letter and a letter that hasn't 
+    already been guessed
     """
     while True:
         guess = input("Guess a letter! ").lower()
@@ -52,6 +53,8 @@ def get_and_validate_guess():
             print("You can only enter 1 letter!")
         elif guess not in constants.ALPHABET:
             print("Please enter a valid letter!")
+        elif guess in excluded_letters:
+            print(f"You already guessed {guess}!")
         else: 
             return guess
 
@@ -67,11 +70,14 @@ def main():
     title_of_game()
     game_word = generate_random_word(constants.WORDS)
 
-    display_word(game_word)
+    while True:
 
-    guess = get_and_validate_guess()
-    guessed_letters.append(guess)
+        display_word(game_word)
+        display_guessed_letters(guessed_letters)
 
-    display_guessed_letters(guessed_letters)
+        guess = get_and_validate_guess(guessed_letters)
+        guessed_letters.append(guess)
+
+    
 
 main()
