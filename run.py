@@ -7,7 +7,7 @@ def title_of_game():
     Adds a title to the screen
     """
     print("Welcome to the HANGMAN game!")
-    
+
 
 def generate_random_word(words):
     """
@@ -27,6 +27,16 @@ def display_word(word):
     for i in range(len(word)):
         value += "_ "
     print(value)
+    
+
+def display_guessed_letters(letters):
+    """
+    Displays the letters the user has already guessed
+    """
+    value = ""
+    for i in letters:
+        value += i + " "
+    print(f"Guessed letters: {value}")
 
 
 def get_and_validate_guess():
@@ -52,10 +62,16 @@ def get_and_validate_guess():
 #function below is used to test to see if the game works
 
 def main():
+    guessed_letters = [] 
+
     title_of_game()
     game_word = generate_random_word(constants.WORDS)
-    print(game_word)
+
     display_word(game_word)
-    get_and_validate_guess()
+
+    guess = get_and_validate_guess()
+    guessed_letters.append(guess)
+
+    display_guessed_letters(guessed_letters)
 
 main()
