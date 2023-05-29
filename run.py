@@ -7,6 +7,7 @@ def title_of_game():
     Adds a title to the screen
     """
     print("Welcome to the HANGMAN game!")
+    
 
 def generate_random_word(words):
     """
@@ -28,6 +29,26 @@ def display_word(word):
     print(value)
 
 
+def get_and_validate_guess():
+    """
+    Gets the guess from the user and validates it
+    so it only returns if the user has entered
+    one valid letter
+    """
+    while True:
+        guess = input("Guess a letter! ").lower()
+
+        if len(guess) != 1:
+            print("You can only enter 1 letter!")
+        elif guess not in constants.ALPHABET:
+            print("Please enter a valid letter!")
+        else: 
+            return guess
+
+
+
+
+
 #function below is used to test to see if the game works
 
 def main():
@@ -35,5 +56,6 @@ def main():
     game_word = generate_random_word(constants.WORDS)
     print(game_word)
     display_word(game_word)
+    get_and_validate_guess()
 
 main()
