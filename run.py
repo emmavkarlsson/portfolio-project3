@@ -58,7 +58,13 @@ def get_and_validate_guess(excluded_letters):
         else: 
             return guess
 
-
+def check_guess(word, letter):
+    """
+    Checks how many times the guessed letter
+    appears in the word
+    """
+    count_letter = word.count(letter)
+    return count_letter
 
 
 
@@ -78,6 +84,11 @@ def main():
         guess = get_and_validate_guess(guessed_letters)
         guessed_letters.append(guess)
 
-    
+        correct_guess = check_guess(gameWord, guess)
+        if correct_guess == 0:
+            # guess was wrong, reduce lives and update hangman
+        else:
+            # guess was right, add letter to hidden word
+
 
 main()
