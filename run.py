@@ -8,7 +8,6 @@ def title_of_game():
     """
     print("Welcome to the HANGMAN game!")
 
-
 def generate_random_word(words):
     """
     Generates a random word for the user to guess
@@ -39,6 +38,10 @@ def display_word(word, guessed_letters):
     print(value)
 
 def display_lives(lives):
+    """
+    Displays how many lives the user has left
+    """
+    print("")
     print(f"Lives left: {lives}")
 
 
@@ -50,6 +53,7 @@ def display_guessed_letters(letters):
     for i in letters:
         value += i + " "
     print(f"Guessed letters: {value}")
+    print("")
 
 
 def get_and_validate_guess(excluded_letters):
@@ -64,12 +68,16 @@ def get_and_validate_guess(excluded_letters):
 
         if len(guess) != 1:
             print("You can only enter 1 letter!")
+            print("")
         elif guess not in constants.ALPHABET:
             print("Please enter a valid letter!")
+            print("")
         elif guess in excluded_letters:
             print(f"You already guessed {guess}!")
+            print("")
         else: 
             return guess
+
 
 def check_guess(word, letter):
     """
@@ -78,7 +86,6 @@ def check_guess(word, letter):
     """
     count_letter = word.count(letter)
     return count_letter
-
 
 
 def main():
@@ -114,4 +121,14 @@ def main():
             correct_answers += correct_guess
             # guess was right, add letter to hidden word
 
-main()
+
+def play_again():
+    return input("Do you want to play again? (y/n): ").lower().startswith("y")
+
+
+if __name__ == '__main__':
+    while True:
+        main()
+    
+        if not play_again():
+            break
