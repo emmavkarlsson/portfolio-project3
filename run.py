@@ -90,6 +90,13 @@ def main():
         display_lives(lives_left)
         display_guessed_letters(guessed_letters)
 
+        if lives_left == 0:
+            print("You lost!")
+            return
+        if correct_answers == len(game_word):
+            print("You won!")
+            return
+
         guess = get_and_validate_guess(guessed_letters)
         guessed_letters.append(guess)
 
@@ -100,6 +107,5 @@ def main():
         else:
             correct_answers += correct_guess
             # guess was right, add letter to hidden word
-
 
 main()
