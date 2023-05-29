@@ -104,7 +104,7 @@ def main():
         display_guessed_letters(guessed_letters)
 
         if lives_left == 0:
-            print("You lost!")
+            print(f"You lost! the word was '{game_word}'")
             return
         if correct_answers == len(game_word):
             print("You won!")
@@ -116,13 +116,15 @@ def main():
         correct_guess = check_guess(game_word, guess)
         if correct_guess == 0:
             lives_left -= 1
-            # guess was wrong, reduce lives and update hangman
         else:
             correct_answers += correct_guess
-            # guess was right, add letter to hidden word
 
 
 def play_again():
+    """
+    Gives the user the option to play again after they have won
+    or lost. Accepts y and anything that starts with y as "yes".
+    """
     return input("Do you want to play again? (y/n): ").lower().startswith("y")
 
 
