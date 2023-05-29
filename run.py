@@ -16,6 +16,13 @@ def generate_random_word(words):
     """
     index = random.randint(0, len(constants.WORDS) - 1)
     return constants.WORDS[index]
+
+def display_hangman(lives_left):
+    """
+    Displays the hangman graphics
+    """
+    current_graphic = len(graphic.HANGMAN) - lives_left - 1
+    print(graphic.HANGMAN[current_graphic])
     
 
 def display_word(word, guessed_letters):
@@ -85,7 +92,7 @@ def main():
     game_word = generate_random_word(constants.WORDS)
 
     while True:
-
+        display_hangman(lives_left)
         display_word(game_word, guessed_letters)
         display_lives(lives_left)
         display_guessed_letters(guessed_letters)
