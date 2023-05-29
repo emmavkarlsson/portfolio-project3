@@ -81,17 +81,16 @@ def check_guess(word, letter):
 
 
 
-
-
 def main():
     guessed_letters = [] 
     lives_left = 6
     correct_answers = 0
 
-    title_of_game()
     game_word = generate_random_word(constants.WORDS)
 
     while True:
+        print("\033[H\033[2J", end="")
+        title_of_game()
         display_hangman(lives_left)
         display_word(game_word, guessed_letters)
         display_lives(lives_left)
