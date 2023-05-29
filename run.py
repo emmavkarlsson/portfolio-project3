@@ -18,15 +18,21 @@ def generate_random_word(words):
     return constants.WORDS[index]
     
 
-def display_word(word):
+def display_word(word, guessed_letters):
     """
     Prints out the letters of the words
     as underscores
     """
     value = ""
     for i in range(len(word)):
-        value += "_ "
+        if word[i] in guessed_letters:
+            value += word[i] + " "
+        else: 
+            value += "_ "
     print(value)
+
+def display_lives(lives):
+    print(f"Lives left: {lives}")
 
 
 def display_guessed_letters(letters):
@@ -68,26 +74,31 @@ def check_guess(word, letter):
 
 
 
-#function below is used to test to see if the game works
+
 
 def main():
     guessed_letters = [] 
+    lives_left = 6
+    correct_answers = 0
 
     title_of_game()
     game_word = generate_random_word(constants.WORDS)
 
     while True:
 
-        display_word(game_word)
+        display_word(game_word, guessed_letters)
+        display_lives(lives_left)
         display_guessed_letters(guessed_letters)
 
         guess = get_and_validate_guess(guessed_letters)
         guessed_letters.append(guess)
 
-        correct_guess = check_guess(gameWord, guess)
+        correct_guess = check_guess(game_word, guess)
         if correct_guess == 0:
+            lives_left -= 1
             # guess was wrong, reduce lives and update hangman
         else:
+            correct_answers += correct_guess
             # guess was right, add letter to hidden word
 
 
