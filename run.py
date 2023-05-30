@@ -2,11 +2,13 @@ import random
 import constants
 import graphic
 
+
 def title_of_game():
     """
     Adds a title to the screen
     """
     print("Welcome to the HANGMAN game!")
+
 
 def generate_random_word(words):
     """
@@ -16,13 +18,14 @@ def generate_random_word(words):
     index = random.randint(0, len(constants.WORDS) - 1)
     return constants.WORDS[index]
 
+
 def display_hangman(lives_left):
     """
     Displays the hangman graphics
     """
     current_graphic = len(graphic.HANGMAN) - lives_left - 1
     print(graphic.HANGMAN[current_graphic])
-    
+
 
 def display_word(word, guessed_letters):
     """
@@ -33,9 +36,10 @@ def display_word(word, guessed_letters):
     for i in range(len(word)):
         if word[i] in guessed_letters:
             value += word[i] + " "
-        else: 
+        else:
             value += "_ "
     print(value)
+
 
 def display_lives(lives):
     """
@@ -60,7 +64,7 @@ def get_and_validate_guess(excluded_letters):
     """
     Gets the guess from the user and validates it
     so it only returns if the user has entered
-    one valid letter and a letter that hasn't 
+    one valid letter and a letter that hasn't
     already been guessed
     """
     while True:
@@ -75,7 +79,7 @@ def get_and_validate_guess(excluded_letters):
         elif guess in excluded_letters:
             print(f"You already guessed {guess}!")
             print("")
-        else: 
+        else:
             return guess
 
 
@@ -89,7 +93,7 @@ def check_guess(word, letter):
 
 
 def main():
-    guessed_letters = [] 
+    guessed_letters = []
     lives_left = 6
     correct_answers = 0
 
@@ -131,6 +135,6 @@ def play_again():
 if __name__ == '__main__':
     while True:
         main()
-    
+
         if not play_again():
             break
